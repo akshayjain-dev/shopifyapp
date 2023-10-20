@@ -2,19 +2,20 @@
 
 @section('content')
 <div class="container">
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
+    <h5>Configuration Settings</h5>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
-<div class="container">
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+</div>
+<div class="container mt-4">
     <form method="POST" action="{{ route('configuration.update') }}">
         @csrf
         @method('PATCH')

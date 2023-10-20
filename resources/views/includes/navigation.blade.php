@@ -8,14 +8,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        @guest
-        @else
-        <ul class="navbar-nav me-auto">
+            @guest
+            @else
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('account.index') }}">My Account</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('configuration.index') }}">Configuration Settings</a>
                 </li>
             </ul>
-        @endguest
+            @endguest
             <ul class="navbar-nav ms-auto">
                 @guest
                 @if (Route::has('login'))

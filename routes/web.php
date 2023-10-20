@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\AccountController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,7 @@ use App\Http\Controllers\ConfigurationController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -26,4 +28,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/configuration', [ConfigurationController::class, 'index'])->name('configuration.index');
     Route::patch('/configuration', [ConfigurationController::class, 'update'])->name('configuration.update');
+    Route::get('/account', [AccountController::class, 'index'])->name('account.index');
 });
