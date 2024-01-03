@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MerchantOrder;
 
-class OrderController extends Controller
+class UpdateOrderController extends Controller
 {
     public function updateOrderStatus(Request $request)
     {
