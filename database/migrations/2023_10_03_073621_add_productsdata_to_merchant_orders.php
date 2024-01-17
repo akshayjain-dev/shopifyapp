@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddProductsdataToMerchantOrders extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('merchant_orders', function (Blueprint $table) {
+            $table->json('products_data')->nullable()->after('purchase_date');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('merchant_orders', function (Blueprint $table) {
+            $table->dropColumn('products_data');
+        });
+    }
+}

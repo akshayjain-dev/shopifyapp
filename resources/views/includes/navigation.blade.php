@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="logo">
+    <img class="c-sidebar-brand-full" src="{{ url('/assets/img/specialist-supplements-logo-1.png') }}" width="100"  alt="SSLTD">    
+</div>
     <div class="container">
+   
         <a class="navbar-brand" href="{{ url('/home') }}">
             Home
         </a>
@@ -8,17 +12,17 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @guest
-            @else
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('account.index') }}">My Account</a>
-                </li>
+        @guest
+        @else
+        <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('configuration.index') }}">Configuration Settings</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('orders.index') }}">Shopify Orders</a>
+                </li>
             </ul>
-            @endguest
+        @endguest
             <ul class="navbar-nav ms-auto">
                 @guest
                 @if (Route::has('login'))

@@ -56,7 +56,11 @@ return [
             'channels' => ['single'],
             'ignore_exceptions' => false,
         ],
-
+        'ssltd' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/ssltd.log'),
+            'level' => 'info',
+        ],
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

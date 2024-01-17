@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\DropshipOrdersController;
+use App\Http\Controllers\UpdateOrderController;
 use App\Http\Controllers\AccountController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,17 +18,25 @@ use App\Http\Controllers\AccountController;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+})->middleware(['verify.shopify'])->name('home');
+
+Route::get('/login', function () {
     return view('auth.login');
 });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// routes/web.php
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/configuration', [ConfigurationController::class, 'index'])->name('configuration.index');
     Route::patch('/configuration', [ConfigurationController::class, 'update'])->name('configuration.update');
+    Route::resource('orders', 'App\Http\Controllers\OrdersController');
+    //Route::post('/orders/search/', 'App\Http\Controllers\OrdersController@index')->name('search');
+    Route::get('/ssltd/dropship-dashboard', 'App\Http\Controllers\DropshipDashboardController@index');
+    Route::patch('/ssltd/dropship-orders', [DropshipOrdersController::class, 'performAction'])->name('dropshiporder.performAction');
     Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+   
 });
+Route::post('/update-order-status', [UpdateOrderController::class, 'updateOrderStatus']);
+

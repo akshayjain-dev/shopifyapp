@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MerchantOrder;
+use App\Models\MerchantOrders;
 
 class UpdateOrderController extends Controller
 {
@@ -14,7 +14,7 @@ class UpdateOrderController extends Controller
             'status' => 'required',
         ]);
 
-        $order = MerchantOrder::where('order_id', $request->input('order_id'))->first();
+        $order = MerchantOrders::where('order_id', $request->input('order_id'))->first();
 
         if ($order) {
             $order->update(['order_status' => $request->input('status')]);
@@ -34,12 +34,12 @@ class UpdateOrderController extends Controller
         {
             $shopifyApiUrl = 'https://'.$order->shopify_shop_domain.'/admin/api/2023-10/orders/'.$orderID.'.json';
 
-                $clientId = '2c00498021b0838830faeea664995079';
-                $clientSecret = 'f6d512d1c63bad51d0a6e31cd4c3e797';
+                $clientId = '7449656d11f89ab0930086172c75ee3d';
+                $clientSecret = '65e1c42b1c2a31b00c13e06f7ac3c9e0';
         
                 $base64Credentials = base64_encode("$clientId:$clientSecret");
                 $shopifyApiHeaders = [
-                    'Authorization' => 'Basic ' . $base64Credentials,
+                    'X-Shopify-Access-Token' => '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',
                     'Content-Type' => 'application/json',
                 ];
         
